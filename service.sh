@@ -1,24 +1,24 @@
 #!/system/bin/sh
 
-# 等待系统启动完成
+# Wait for system boot to complete
 until [ "$(getprop sys.boot_completed)" = "1" ]; do
     sleep 5
 done
-#setenforce 0 新版sukisu中禁止了SElinux宽容
-# 计算开始时间
+#setenforce 0 SELinux permissive mode is disabled in newer SukiSU versions
+# Calculate start time
 START_TIME=$(date +%s)
-END_TIME=$((START_TIME + 300))  # 5分钟 = 300秒
+END_TIME=$((START_TIME + 300))  # 5 minutes = 300 seconds
 
-# 在5分钟内每5秒执行一次修复
+# Run the repair every 5 seconds for 5 minutes
 while [ $(date +%s) -lt $END_TIME ]; do
-    # 执行修复脚本
+    # Execute repair script
     stop vendor.soter
     sleep 1
     pm clear com.tencent.soter.soterserver
     start vendor.soter
     sleep 1
     
-    # 每5秒执行一次（总共执行约60次）
+    # Runs every 5 seconds (about 60 times in total)
     sleep 3
-#setenforce 1 新版sukisu中禁止了SElinux宽容
+#setenforce 1 SELinux permissive mode is disabled in newer SukiSU versions
 done

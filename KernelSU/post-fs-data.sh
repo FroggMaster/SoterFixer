@@ -1,8 +1,8 @@
 #!/system/bin/sh
-# KernelSU模块安装脚本
+# KernelSU module installation script
 
 MODDIR=${0%/*}
 
-# 设置权限
+# Set permissions
 chmod 0755 $MODDIR/service.sh
 chmod 0755 $MODDIR/fix_soter_key.sh

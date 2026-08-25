@@ -1,14 +1,14 @@
 #!/system/bin/sh
 
-# 兼容Magisk和KernelSU的模块路径
+# Module path compatible with both Magisk and KernelSU
 if [ -n "$MODPATH" ]; then
-    # Magisk环境
+    # Magisk environment
     MODDIR="$MODPATH"
 else
-    # KernelSU环境
+    # KernelSU environment
     MODDIR=${0%/*}
 fi
 
-# 设置权限
+# Set permissions
 chmod 0755 "$MODDIR/service.sh"
 chmod 0755 "$MODDIR/fix_soter_key.sh"
